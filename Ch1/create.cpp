@@ -2,8 +2,8 @@
 #include <iostream>
 
 int main() {
-  int width = 7680;
-  int height = 4320;
+  int width = 1920;
+  int height = 1080;
 
   std::cout << "P3\n" << width << " " << height << "\n255\n";
 
@@ -11,7 +11,6 @@ int main() {
 
   for (float g = 0; g < height; g++) {
     for (float r = 0; r < width; r++) {
-      
       std::cout << int((r/width)*255) << " " << int((g/height)*255) << " 0\n";
     }
   }
