@@ -69,10 +69,6 @@ class vec3 {
       return *this;
     }
 
-    inline vec3 operator+(const vec3& v) {
-      return vec3(x + v.x, y + v.y, z + v.z);
-    }
-
     inline vec3 operator-(const vec3& v) {
       return vec3(x - v.x, y - v.y, z - v.z);
     }
@@ -85,14 +81,6 @@ class vec3 {
       return vec3(x/v.x, y/v.y, z/v.z);
     }
 
-    inline vec3 operator*(const float t) {
-      return vec3(x * t, y * t, z * t);
-    }
-
-    inline vec3 operator/(const float t) {
-      return vec3(x / t, y / t, z / t);
-    }
-
     inline float dot(const vec3& v) {
       return (x * v.x) + (y * v.y) + (z * v.z);
     }
@@ -103,11 +91,28 @@ class vec3 {
                   (x * v.y - y * v.x));
     }
 
-    inline vec3 unit_vector() {
-      return *this / *this.length();
-    }
-
 };
+
+inline vec3 operator+(const vec3& v1, const vec3& v2) {
+  return vec3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+}
+
+inline vec3 operator*(const vec3& v, const float t) {
+  return vec3(v.x * t, v.y * t, v.z * t);
+}
+
+// Forwarding to commutative alternative
+inline vec3 operator*(const float t, const vec3& v) {
+  return operator*(v, t);
+}
+
+inline vec3 operator/(const vec3 v, const float t) {
+  return vec3(v.x / t, v.y / t, v.z / t);
+}
+
+inline vec3 unit_vector(vec3 v) {
+  return v / v.length();
+}
 
 inline std::istream& operator>>(std::istream& is, vec3& t) {
   is >> t.x >> t.y >> t.z;
