@@ -4,10 +4,12 @@
 
 class vec3 {
   public:
+
     float x;
     float y;
     float z;
-    vec3();
+
+    vec3() {}
 
     vec3(float x1, float y1, float z1) {
       x = x1;
