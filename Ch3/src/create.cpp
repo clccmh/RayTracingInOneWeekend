@@ -38,6 +38,7 @@ int main(int argc, char** argv) {
    * |                            |
    * |-2, 1, -1          2, 1, -1 |
    * ------------------------------
+   */
 
   vec3 lower_left_corner(-2.0, 1.0, -1.0);
   vec3 horizontal(4.0, 0.0, 0.0);
