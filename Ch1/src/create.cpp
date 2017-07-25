@@ -15,17 +15,17 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  const unsigned int width = 1920;
-  const unsigned int height = 1080;
-  const unsigned char channels = 3;
-  unsigned int index;
+  const int width = 1920;
+  const int height = 1080;
+  const char channels = 3;
+  int index;
 
   unsigned char* data = new unsigned char[width * height * 3];
 
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
+  for (int y = height - 1; y >= 0; y--) {
+    for (int x = 0; x < width; x++) {
 
-      index = (y * width * channels) + (x * channels);
+      index = ((height - 1 - y) * width * channels) + (x * channels);
 
       data[index]     = ((float) y / (float) height) * 255; // Red channel
       data[index + 1] = ((float) x / (float) width) * 255; // Green channel

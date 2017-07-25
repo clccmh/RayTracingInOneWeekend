@@ -54,10 +54,7 @@ int main(int argc, char** argv) {
   for (int y = height - 1; y >= 0; y--) {
     for (int x = 0; x < width; x++) {
 
-      // Calculate the index using top left as origin
-      index = (y * width * channels) + (x * channels);
-      // Flip it to use bottom left as origin
-      index = (width * height * channels) - index;
+      index = ((height - 1 - y) * width * channels) + (x * channels);
 
       float u = (float) x / (float) width;
       float v = (float) y / (float) height;
