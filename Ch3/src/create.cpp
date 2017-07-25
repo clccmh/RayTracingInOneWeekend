@@ -21,34 +21,25 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  const unsigned int width = 200;
-  const unsigned int height = 100;
+  const int width = 200;
+  const int height = 100;
   const unsigned char channels = 3;
-  unsigned int index;
+  int index;
 
   unsigned char* data = new unsigned char[width * height * channels];
 
-  /*
-   * Because I'm going from top to bottom, left to right, I am using the
-   * following screen schema.
-   * ------------------------------
-   * |-2, -1, -1        2, -1, -1 |
-   * |                            |
-   * |           0, 0, 0          |
-   * |                            |
-   * |-2, 1, -1          2, 1, -1 |
-   * ------------------------------
-   */
-
-  vec3 lower_left_corner(-2.0, 1.0, -1.0);
+  vec3 lower_left_corner(-2.0, -1.0, -1.0);
   vec3 horizontal(4.0, 0.0, 0.0);
-  vec3 vertical(0.0, -2.0, 0.0);
+  vec3 vertical(0.0, 2.0, 0.0);
   vec3 origin(0.0, 0.0, 0.0);
 
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
+  for (int y = height - 1; y >= 0; y--) {
+    for (int x = 0; x < width; x++) {
 
+      // Calculate the index using top left as origin
       index = (y * width * channels) + (x * channels);
+      // Flip it to use bottom left as origin
+      index = (width * height * channels) - index;
 
       float u = (float) x / (float) width;
       float v = (float) y / (float) height;
